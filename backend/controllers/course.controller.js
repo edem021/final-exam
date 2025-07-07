@@ -3,6 +3,12 @@ import Course from "../models/course.model.js";
 export const getCourses = async (req, res) => {
   try {
     const courses = await Course.find({});
+
+    // Kezelhetjük külön ha üres az adatbázis
+    /* if (courses.length === 0) {
+    return res.status(200).json({ message: "No courses found", courses: [] });
+    } */
+
     res.status(200).json(courses);
   } catch (error) {
     res
@@ -46,6 +52,12 @@ export const createCourse = async (req, res) => {
 };
 
 export const getCourse = async (req, res) => {
+  // Lehetne validálni az id-t még azelőtt hogy elkérjük a course-t
+  // const { id } = req.params;
+
+  /* if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid destination ID format" });
+  } */
   try {
     const course = await Course.findById(req.params.id);
     if (!course) {

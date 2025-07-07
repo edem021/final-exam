@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 const CoursePage = () => {
   const [course, setCourse] = useState({});
   const { id } = useParams();
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -16,9 +17,15 @@ const CoursePage = () => {
       } catch (error) {
         console.error(error);
       }
+      /* finally{
+        setLoading(false)
+      } */
     };
     fetchCourse();
   }, [id]);
+
+  // if (loading) return <div>Loading...</div>;
+  // if (!course) return <div>Course not found</div>;
 
   return (
     <div className="w-[1200px] justify-center flex min-h-screen border-l border-r border-slate-600">

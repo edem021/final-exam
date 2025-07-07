@@ -2,6 +2,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CreatePage = () => {
+  //Lehetne csak egy form state és loading state
+
+  /*  
+  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({
+  title: "",
+  category: "",
+  instructor: "",
+  price: 0,
+  duration: 0,
+  level: "",
+  isOnline: false,
+  isAvailable: false,
+}); */
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [instructor, setInstructor] = useState("");
@@ -27,6 +42,7 @@ const CreatePage = () => {
     };
 
     try {
+      //setLoading(true)
       const res = await fetch("http://localhost:5000/api/course", {
         method: "POST",
         headers: {
@@ -43,6 +59,9 @@ const CreatePage = () => {
     } catch (error) {
       console.error(error);
     }
+    /* finally{
+      setLoading(false)
+    } */
   };
 
   return (
@@ -56,6 +75,7 @@ const CreatePage = () => {
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          //onChange={(e) => setForm({...form, title: e.target.value})}
           type="text"
           id="title"
           className="ring rounded"
@@ -65,6 +85,7 @@ const CreatePage = () => {
         <input
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          //onChange={(e) => setForm({...form, category: e.target.value})}
           type="text"
           id="category"
           className="ring rounded"
@@ -74,6 +95,7 @@ const CreatePage = () => {
         <input
           value={instructor}
           onChange={(e) => setInstructor(e.target.value)}
+          //onChange={(e) => setForm({...form, instructor: e.target.value})}
           type="text"
           id="instructor"
           className="ring rounded"
@@ -83,6 +105,7 @@ const CreatePage = () => {
         <input
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          //onChange={(e) => setForm({...form, price: e.target.value})}
           type="number"
           id="price"
           className="ring rounded"
@@ -92,6 +115,7 @@ const CreatePage = () => {
         <input
           value={duration}
           onChange={(e) => setDuration(e.target.value)}
+          //onChange={(e) => setForm({...form, duration: e.target.value})}
           type="number"
           id="duration"
           className="ring rounded"
@@ -101,6 +125,7 @@ const CreatePage = () => {
         <input
           value={level}
           onChange={(e) => setLevel(e.target.value)}
+          //onChange={(e) => setForm({...form, level: e.target.value})}
           type="text"
           id="level"
           className="ring rounded"
@@ -113,6 +138,9 @@ const CreatePage = () => {
           <input
             value={isOnline}
             onChange={(e) => setIsOnline(e.target.value)}
+            // checkboxnál nem value-t hanem checked-t hasznalunk
+            // checked={isOnline}
+            // onChange={(e) => setIsOnline(e.target.checked)}
             type="checkbox"
             id="isOnline"
           />
@@ -125,16 +153,21 @@ const CreatePage = () => {
           <input
             value={available}
             onChange={(e) => setAvailable(e.target.value)}
+            // checkboxnál nem value-t hanem checked-t hasznalunk
+            // checked={isOnline}
+            // onChange={(e) => setIsOnline(e.target.checked)}
             type="checkbox"
             id="available"
           />
         </div>
 
         <button
+          /* disabled={loading} */
           type="submit"
           className="border rounded px-4 py-1 cursor-pointer"
         >
           Create
+          {/* {loading ? "Loading..." : "Create"} */}
         </button>
       </form>
     </div>
