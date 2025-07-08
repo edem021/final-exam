@@ -155,7 +155,7 @@ const CreatePage = () => {
             onChange={(e) => setAvailable(e.target.value)}
             // checkboxnál nem value-t hanem checked-t hasznalunk
             // checked={isOnline}
-            // onChange={(e) => setIsOnline(e.target.checked)}
+            // onChange={(e) => setAvailable(e.target.checked)}
             type="checkbox"
             id="available"
           />
