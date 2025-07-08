@@ -21,7 +21,7 @@ const courseSchema = new Schema(
       type: Number,
       required: true,
       //Extra validáció : nem lehet kisebb mint 0
-      // min: [0, "Estimated cost cannot be negative"]
+      // min: [0, "price cannot be negative"]
     },
     duration: {
       type: Number,
